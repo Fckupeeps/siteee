@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Valentine 💖</title>
+
+    <!-- IMPORTANT FOR MOBILE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff4e8a, #ff99cc);
+            overflow-x: hidden;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            margin: 8px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 120px;
+        }
+
+        #yes {
+            background-color: #ff0066;
+            color: white;
+        }
+
+        #yes:hover {
+            background-color: #cc0052;
+            transform: scale(1.1);
+        }
+
+        #no {
+            background-color: #333;
+            color: white;
+        }
+
+        .message {
+            display: none;
+            margin-top: 30px;
+            font-size: 16px;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: fixed;
+            bottom: -20px;
+            color: rgba(255,255,255,0.8);
+            animation: float 6s linear forwards;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-110vh); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Hi My Love 💕</h1>
+        <h2 id="question">Will you be my Valentine? 🌹</h2>
+
+        <button id="yes" onclick="yesAnswer()">YES 💖</button>
+        <button id="no" onclick="noAnswer()">NO 😅</button>
+
+        <div class="message" id="sweetMessage"></div>
+    </div>
+
+    <script>
+        let noMessages = [
+            "Are you sure? 🥺",
+            "THINK AGAIN!! 😤💘",
+            "Don’t be shy 😏💕",
+            "Please naaaa 🥰",
+            "Last chance na to 😭💖"
+        ];
+
+        let noCount = 0;
+
+        function noAnswer() {
+            document.getElementById("question").innerText = noMessages[noCount];
+            noCount++;
+
+            if (noCount >= noMessages.length) {
+                noCount = 0;
+            }
+        }
+
+        function yesAnswer() {
+            document.getElementById("question").style.display = "none";
+            document.getElementById("yes").style.display = "none";
+            document.getElementById("no").style.display = "none";
+
+            let message = `
+            My Love 💖<br><br>
+            Thank you for saying YES. You don't know how much this means to me.<br><br>
+
+            Every day with you feels like the best day of my life.<br>
+            Your smile makes my world brighter.<br>
+            Your laugh is my favorite sound.<br>
+            And your love is the greatest gift I have ever received 🌹<br><br>
+
+            I promise to keep choosing you,<br>
+            to keep loving you,<br>
+            and to keep making you feel special <br>
+            not just on Valentine’s Day,<br>
+            but every single day. ❤️<br><br>
+
+            I love you more than words can ever explain. 💘
+            `;
+            
+            let msgBox = document.getElementById("sweetMessage");
+            msgBox.innerHTML = message;
+            msgBox.style.display = "block";
+        }
+
+        function createHearts() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "💖";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = Math.random() * 20 + 15 + "px";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        setInterval(createHearts, 400);
+    </script>
+
+</body>
+</html>
